@@ -65,7 +65,7 @@ public class ManageMentSystemApplication {
 	@Autowired
 	DateStatistics datestat;
 	//routes for all the Api end Points
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = "*")
 	@GetMapping(path="/",produces={"application/json"})
 	public LoginStatus welcomeHome(@RequestParam("empid") String empid,@RequestParam("pass") String pass){
 		
@@ -148,7 +148,7 @@ public class ManageMentSystemApplication {
 	}
 	
 	
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = "*")
 	@GetMapping("logincount/{empid}")
 	public EmployeeDetails homepage(@PathVariable("empid") String empid){
 		if(edao.getCount(empid)!=null){
@@ -159,7 +159,7 @@ public class ManageMentSystemApplication {
 		
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = "*")
 	@GetMapping("loginHistory/{empid}")
 	public List<SingleLoginDetails> EmpDetails(@PathVariable("empid") String empid){
 		
@@ -169,7 +169,7 @@ public class ManageMentSystemApplication {
 	}
 	
 
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = "*")
 	@GetMapping("dailyHistory")
 	public List<DateStatistics> LoginCompleteDetails(){
 		

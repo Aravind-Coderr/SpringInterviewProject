@@ -66,7 +66,7 @@ public class ManageMentSystemApplication {
 	DateStatistics datestat;
 	//routes for all the Api end Points
 	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping("/")
+	@GetMapping(path="/",produces={"application/json"})
 	public LoginStatus welcomeHome(@RequestParam("empid") String empid,@RequestParam("pass") String pass){
 		
 		System.out.println("&&&&&&&&&&& "+empid+" "+pass);
@@ -102,6 +102,8 @@ public class ManageMentSystemApplication {
 				datecounter++;
 				
 				datestat.setCount(datecounter);datestat.setLogindate(d2);
+				int f=datedao.insertCountofDate(datecounter, d2.toString());
+				System.out.println("Inser Successfull "+f);
 				datedao.save(datestat);
 				System.out.println("Not Same Date ");
 
@@ -134,6 +136,7 @@ public class ManageMentSystemApplication {
 				SingleLoginDetails s =new SingleLoginDetails();
 				s.setCount(1);
 				s.setLogindate(d2);
+				s.setUsername(temp.getUsername());
 				
 				singleservice.save(s);
 			}
@@ -169,6 +172,7 @@ public class ManageMentSystemApplication {
 	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("dailyHistory")
 	public List<DateStatistics> LoginCompleteDetails(){
+		
 		
 		
 		return datedao.FindAllRecords();

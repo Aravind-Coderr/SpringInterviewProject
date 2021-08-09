@@ -21,8 +21,8 @@ public interface DateStatisticsDAO extends JpaRepository<DateStatistics,Integer>
 	
 	@Transactional  
 	@Modifying
-	@Query( value = "insert into LoginRecords (count,logindate) values( count =:count, logindate=:logindate )",nativeQuery=true)
-	public int insertCountofDate(@Param("count")int count,@Param("logindate") String d);
+	@Query( value = "insert into LoginRecords (count,logindate) values( ?1, ?2 )",nativeQuery=true)
+	public int insertCountofDate(int count, String d);
 	
 	@Transactional  
 	@Query ( value = "select logindate from LoginRecords  order by logindate desc limit 1 ",nativeQuery=true)
@@ -32,8 +32,11 @@ public interface DateStatisticsDAO extends JpaRepository<DateStatistics,Integer>
 	@Query ( value = "select count from LoginRecords  where logindate=?1  order by logindate desc limit 1",nativeQuery=true)
 	public int MostRecentcount(String date);
 	
-	@Query ( value="select * from LoginRecords  order by logindate ",nativeQuery=true)
+	@Query ( value="select * from LoginRecords   order by logindate desc limit 10",nativeQuery=true)
 	public List<DateStatistics> FindAllRecords();
+	
+	
+	
 	
 	
 }

@@ -80,7 +80,7 @@ public class ManageMentSystemApplication {
 			loginstatus.setMessage("No Valid Credential");
 		}
 		
-		if (employeeService.getEmpDetails(empid).getUsername()!=null){
+		if (employeeService.getEmpDetails(empid).getUsername()!=null){    
 			loginstatus.setMessage("Welcome");
 
 			LocalDate d=LocalDate.now();
@@ -160,7 +160,7 @@ public class ManageMentSystemApplication {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping("loginHistory/{empid}")
+	@GetMapping(path="loginHistory/{empid}",produces={"application/json"})
 	public List<SingleLoginDetails> EmpDetails(@PathVariable("empid") String empid){
 		
 		
@@ -170,7 +170,7 @@ public class ManageMentSystemApplication {
 	
 
 	@CrossOrigin(origins = "*")
-	@GetMapping("dailyHistory")
+	@GetMapping(path="dailyHistory",produces={"application/json"})
 	public List<DateStatistics> LoginCompleteDetails(){
 		
 		
@@ -179,7 +179,7 @@ public class ManageMentSystemApplication {
 		
 	}
 	
-	@GetMapping("allUsers")
+	@GetMapping(path="allUsers",produces={"application/json"})
 	public List<EmployeeDetails> EmployeeCompleteDetails(){
 		
 		
